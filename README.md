@@ -1,11 +1,11 @@
 UniversalLocalScripts
 ========================
 
-UniversalLocalScripts is a module that allows Roblox LocalScripts to run in locations like the workspace, including the currentCamera and other player's characters.
+UniversalLocalScripts is a module that allows Roblox LocalScripts to run in locations like the workspace, including the currentCamera and other players' characters.
 
 ### Why run local scripts in the workspace?
 
-In other popular game engines -- such as Unity and Godot -- scripts will run regardless of what object they're attached to. This can make keeping code organized easier as any code relevant to an object and that operates on that object will likely be attached to it or decended from it instead of sitting in some random folder like StarterPlayerScripts.
+In other popular game engines -- such as Unity and Godot -- scripts will run regardless of what object they're attached to. This can make keeping code organized easier as any code relevant to an object that operates on that object will likely be attached to it or descended from it instead of sitting in some random folder like StarterPlayerScripts.
 
 #### Example
 
@@ -75,7 +75,7 @@ for i, player in ipairs(game.Players:GetPlayers()) do
 	monitorPlayer(player)
 end
 ```
-But this is somewhat awkward. With UniversalLocalScripts however we don't really need to modify much at all from the original example with the LocalScript copied into everyone's characters via StarterCharacterScripts! All we need to do is insert the UniversalLocalScripts module into ReplicatedFirst and add the following code to the top of the LocalScript:
+This is how Roblox does things with their default sound script, but this is somewhat awkward. With UniversalLocalScripts however, we don't really need to modify much at all from the original example with the LocalScript copied into everyone's characters via StarterCharacterScripts! All we need to do is insert the UniversalLocalScripts module into ReplicatedFirst and add the following code to the top of the LocalScript:
 
 ```lua
 local UniversalLocalScripts = require(game.ReplicatedFirst.UniversalLocalScripts)
@@ -89,9 +89,9 @@ And just like that the particles work for the local player's character as well a
 
 Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://create.roblox.com/store/asset/6708420842/Default-LocalScript-changer)(source code coming soon). It's intelligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
 
-## Setup
+I'm not familiar enough with the Rojo and Visual Studio Code workflow to make a similar plugin for that.
 
-1.)
+## Setup
 
 1.a) If you're using Rojo, you can clone this repository. [Rojo](https://github.com/rojo-rbx/rojo) 7.4.1.
 
