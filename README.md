@@ -87,7 +87,7 @@ And just like that the particles work for the local player's character as well a
 
 #### is pasting those 3 lines of code over and over a pain?
 
-Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://create.roblox.com/store/asset/6708420842/Default-LocalScript-changer)(source code coming soon). It's inteligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
+Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://create.roblox.com/store/asset/6708420842/Default-LocalScript-changer)(source code coming soon). It's intelligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
 
 ## Setup
 
