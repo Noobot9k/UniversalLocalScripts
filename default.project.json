@@ -1,0 +1,93 @@
+{
+  "name": "UniversalLocalScripts",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+
+    "ReplicatedFirst": {
+      "UniversalLocalScripts":{
+        "$path": "src/clientFirst/UniversalLocalScripts",
+        "$properties": {
+          "Attributes":{
+            "RunInCurrentCamera": {"Bool": true},
+            "RunInPlayerBackpacks": {"Bool": true},
+            "RunInPlayerCharacters": {"Bool": true},
+            "RunInWorkspace": {"Bool": true}
+          }
+        },
+
+        "ULCVersion": {
+          "$className": "StringValue",
+          "$properties": {
+            "Value": "2"
+          }
+        }
+      }
+    },
+
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Color": [
+            0.38823,
+            0.37254,
+            0.38823
+          ],
+          "Locked": true,
+          "Position": [
+            0,
+            -10,
+            0
+          ],
+          "Size": [
+            512,
+            20,
+            512
+          ]
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0,
+          0,
+          0
+        ],
+        "Brightness": 2,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Voxel"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}
