@@ -127,6 +127,8 @@ And now we get a coin with smooth movement and zero network strain.
 
 The nice thing here is that if you also have a server script in the coin that handles detecting when a player picks it up you can have all server scripts, module scripts, and local scripts that operate on this coin located inside of it and they all can get destroyed at once when the coin gets picked up and destroyed. This also makes copying this coin into another project easier as it doesn't require hunting around for scripts installed in other weird locations and moving them over to the new project.
 
+If you'd like to see the place file for these examples, just download Example.rbxl.
+
 ### Is pasting those 3 lines of code over and over a pain?
 
 Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://create.roblox.com/store/asset/6708420842/Default-LocalScript-changer)(source code coming soon). It's intelligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
