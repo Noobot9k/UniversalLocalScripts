@@ -35,8 +35,9 @@ function module.RunLocalScript(localScript : LocalScript)
 		It's best to only run scripts designed with the intention of using ULC.
 	]]
 	if localScript:GetAttribute("DontRunUniversally") == nil and localScript:GetAttribute("RunUniversally") == nil then return end
-	if localScript:GetAttribute("DontRunUniversally") then return end -- old attribute name support.
-	if localScript:GetAttribute("RunUniversally") == false then return end
+	-- Attribute DontRunUniversally is depricated.
+	if localScript:GetAttribute("DontRunUniversally") == true then return
+	elseif localScript:GetAttribute("RunUniversally") == false then return end
 	
 	if localScript:FindFirstAncestorOfClass("Actor") then
 		warn("UniversalLocalScripts does not work with Parallel LUAU.", localScript:GetFullName(), "is in an Actor but will just run as if it's not. task.desynchronize() will not work within this script.")

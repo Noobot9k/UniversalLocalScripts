@@ -1,7 +1,7 @@
 UniversalLocalScripts
 ========================
 
-![alt text](Render2_Small.png)
+![alt text](Icon/Icon_Small.png)
 
 UniversalLocalScripts is a module that allows Roblox LocalScripts to run in locations like the workspace, including the currentCamera and other players' characters.
 

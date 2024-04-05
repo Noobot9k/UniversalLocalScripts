@@ -12,17 +12,27 @@ if UniversalLocalScriptsOBJ.Parent ~= game.ReplicatedFirst and not _SilencePlace
 end
 
 function CanRun(Obj)
-	if LocalPlayer.Character and (Obj:IsDescendantOf(LocalPlayer.Character) or Obj == LocalPlayer.Character) then return false end -- this needs to run first.
+	-- These two need to run first.
+	if LocalPlayer.Character and (Obj:IsDescendantOf(LocalPlayer.Character) or Obj == LocalPlayer.Character) then return false end
 	if LocalPlayer:FindFirstChildOfClass("Backpack") and Obj:IsDescendantOf(LocalPlayer.Backpack) then return false end
 	
-	local canRun = false
+	-- local canRun = true
+	-- if UniversalLocalScriptsOBJ:GetAttribute("RunInPlayerCharacters") then canRun = canRun or IsDecendantOfAPlayerCharacter(Obj) end
+	-- if UniversalLocalScriptsOBJ:GetAttribute("RunInPlayerBackpacks") then canRun = canRun or IsDecendantOfAPlayerBackpack(Obj) end
+	-- if UniversalLocalScriptsOBJ:GetAttribute("RunInCurrentCamera") then canRun = canRun or Obj:IsDescendantOf(workspace.CurrentCamera) end
+	-- if UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace") then canRun = canRun or Obj:IsDescendantOf(workspace) or Obj == workspace end -- this needs to be last
+
+	local RunInPlayerCharacters = UniversalLocalScriptsOBJ:GetAttribute("RunInPlayerCharacters")
+	local RunInPlayerBackpacks = UniversalLocalScriptsOBJ:GetAttribute("RunInPlayerBackpacks")
+	local RunInCurrentCamera = UniversalLocalScriptsOBJ:GetAttribute("RunInCurrentCamera")
+	local RunInWorkspace = UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace")
+
+	if IsDecendantOfAPlayerCharacter(Obj) 					then return RunInPlayerCharacters	end -- this needs to run before the RunInWorkspace check.
+	if IsDecendantOfAPlayerBackpack(Obj) 					then return RunInPlayerBackpacks 	end
+	if Obj:IsDescendantOf(workspace.CurrentCamera) 			then return RunInCurrentCamera 		end -- this needs to run before the RunInWorkspace check.
+	if Obj:IsDescendantOf(workspace) or Obj == workspace 	then return RunInWorkspace 			end -- this needs to be last.
 	
-	if UniversalLocalScriptsOBJ:GetAttribute("RunInPlayerCharacters") then canRun = canRun or IsDecendantOfAPlayerCharacter(Obj) end
-	if UniversalLocalScriptsOBJ:GetAttribute("RunInPlayerBackpacks") then canRun = canRun or IsDecendantOfAPlayerBackpack(Obj) end
-	if UniversalLocalScriptsOBJ:GetAttribute("RunInCurrentCamera") then canRun = canRun or Obj:IsDescendantOf(workspace.CurrentCamera) end
-	if UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace") then canRun = canRun or Obj:IsDescendantOf(workspace) or Obj == workspace end -- this needs to be last
-	
-	return canRun
+	return false
 end
 function MonitorReparenting(localScript)
 	if ReparentEvents[localScript] then ReparentEvents[localScript]:Disconnect() end
@@ -77,9 +87,9 @@ function IsDecendantOfAPlayerBackpack(Obj : LocalScript)
 	--return false
 end
 function RefreshCurrentCamera()
-	--[[currently the enabled spaces for ULC is either or, so scripts should run in these locations, even
-		if RunInCurrentCamera or RunInPlayerCharacters are false so long as RunInWorkspace is true]]
-	RunLocalScriptsRecursive(workspace.CurrentCamera, UniversalLocalScriptsOBJ:GetAttribute("RunInCurrentCamera") or UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace"))
+	--[[currently the enabled spaces for ULC are not either-or, so scripts should only run in these locations
+		if RunInCurrentCamera or RunInPlayerCharacters are true, even though they're technically in the workspace and RunInWorkspace may be true]]
+	RunLocalScriptsRecursive(workspace.CurrentCamera, UniversalLocalScriptsOBJ:GetAttribute("RunInCurrentCamera")) -- or UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace"))
 end
 function RefreshPlayerCharacters()
 	for i, player in ipairs(game.Players:GetPlayers()) do
@@ -98,10 +108,10 @@ end
 function RefreshWorkspace()
 	for i, child in ipairs(workspace:GetChildren()) do
 		
-		--[[currently the enabled spaces for ULC is either or, so scripts should run in these locations, even
-			if RunInCurrentCamera or RunInPlayerCharacters are false so long as RunInWorkspace is true]]
-		--if child == workspace.CurrentCamera then continue end
-		--if game.Players:GetPlayerFromCharacter(child) then continue end
+		--[[currently the enabled spaces for ULC are not either-or, so scripts should only run in these locations
+			if RunInCurrentCamera or RunInPlayerCharacters are true, even though they're technically in the workspace and RunInWorkspace may be true]]
+		if child == workspace.CurrentCamera then continue end
+		if game.Players:GetPlayerFromCharacter(child) then continue end
 		
 		RunLocalScriptsRecursive(child, UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace"))
 	end
@@ -118,14 +128,14 @@ UniversalLocalScriptsOBJ:GetAttributeChangedSignal("RunInWorkspace"):Connect(Run
 --UniversalLocalScriptsOBJ:GetAttributeChangedSignal("RunInPlayerCharacters"):Connect(RefreshPlayerCharacters)
 --UniversalLocalScriptsOBJ:GetAttributeChangedSignal("RunInPlayerBackpacks"):Connect(RefreshPlayerBackpacks)
 --UniversalLocalScriptsOBJ:GetAttributeChangedSignal("RunInWorkspace"):Connect(RefreshWorkspace)
-function decendantAdded(NewDecendant)
-	if NewDecendant:IsA("LocalScript") then
-		if not CanRun(NewDecendant) then return end
-		if UniversalLocalScripts.CheckIfRunning(NewDecendant) then return end
 
-		UniversalLocalScripts.RunLocalScript(NewDecendant)
-		MonitorReparenting(NewDecendant)
-	end
+function decendantAdded(NewDecendant)
+	if not NewDecendant:IsA("LocalScript") then return end
+	if not CanRun(NewDecendant) then return end
+	if UniversalLocalScripts.CheckIfRunning(NewDecendant) then return end
+
+	UniversalLocalScripts.RunLocalScript(NewDecendant)
+	MonitorReparenting(NewDecendant)
 end
 workspace.DescendantAdded:Connect(decendantAdded)
 
