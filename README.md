@@ -133,13 +133,13 @@ If you'd like to see the place file for these examples, just download Example.rb
 
 ### Is pasting those 3 lines of code over and over a pain?
 
-Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://create.roblox.com/store/asset/6708420842/Default-LocalScript-changer)(source code coming soon). It's intelligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
+Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://github.com/Noobot9k/DefaultLocalScripts). It's intelligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
 
 ## Setup
 
 1.a) If you're using Rojo, you can clone this repository. [Rojo](https://github.com/rojo-rbx/rojo) 7.4.1.
 
-1.b) If you're just working in Roblox Studio, you can insert [this package](https://create.roblox.com/store/asset/16890358871/UniversalLocalScripts-v20) into ReplicatedFirst.
+1.b) If you're just working in Roblox Studio, you can insert [this package](https://create.roblox.com/store/asset/16890358871/UniversalLocalScripts-v20) into ReplicatedFirst, or download the latest version from the [releases page](https://github.com/Noobot9k/UniversalLocalScripts/releases/) and instert that into ReplicatedFirst.
 
 2.) Select the ModuleScript in ReplicatedFirst called UniversalLocalScripts and configure its attributes to your liking.
 
@@ -153,6 +153,6 @@ local HasAuthority = UniversalLocalScripts.GetAuthoritativePlayer(script) == gam
 
 And give the LocalScript a boolean attribute named "RunUniversally" and set it to true.
 
-If you don't want to manually do that every time, consider installing the [Default LocalScript changer Studio plugin](https://create.roblox.com/store/asset/6708420842/Default-LocalScript-changer) to auto-add this code to the top of all LocalScripts you create in the workspace/StarterCharacterScripts as well as auto-add the attribute.
+If you don't want to manually do that every time, consider installing the [Default LocalScript changer Studio plugin](https://github.com/Noobot9k/DefaultLocalScripts) to auto-add this code to the top of all LocalScripts you create in the workspace/StarterCharacterScripts as well as auto-add the attribute.
 
 And that's it!
