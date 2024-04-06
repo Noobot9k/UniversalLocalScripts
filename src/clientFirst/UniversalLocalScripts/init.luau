@@ -30,9 +30,9 @@ function module.RunLocalScript(localScript : LocalScript)
 	module.StopLocalScript(localScript)
 	
 	--[[
-		it's easier to start using a module like ULC if it doesn't break too much existing code.
+		it's easier to start using a module like ULS if it doesn't break too much existing code.
 		Trying to run any LocalScript in the workspace such as LocalScripts in dropped tools could break things.
-		It's best to only run scripts designed with the intention of using ULC.
+		It's best to only run scripts designed with the intention of using ULS.
 	]]
 	if localScript:GetAttribute("DontRunUniversally") == nil and localScript:GetAttribute("RunUniversally") == nil then return end
 	-- Attribute DontRunUniversally is depricated.

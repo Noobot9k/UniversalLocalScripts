@@ -15,7 +15,7 @@
           }
         },
 
-        "ULCVersion": {
+        "ULSVersion": {
           "$className": "StringValue",
           "$properties": {
             "Value": "2.1"

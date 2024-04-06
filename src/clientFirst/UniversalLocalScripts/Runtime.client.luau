@@ -87,7 +87,7 @@ function IsDecendantOfAPlayerBackpack(Obj : LocalScript)
 	--return false
 end
 function RefreshCurrentCamera()
-	--[[currently the enabled spaces for ULC are not either-or, so scripts should only run in these locations
+	--[[currently the enabled spaces for ULS are not either-or, so scripts should only run in these locations
 		if RunInCurrentCamera or RunInPlayerCharacters are true, even though they're technically in the workspace and RunInWorkspace may be true]]
 	RunLocalScriptsRecursive(workspace.CurrentCamera, UniversalLocalScriptsOBJ:GetAttribute("RunInCurrentCamera")) -- or UniversalLocalScriptsOBJ:GetAttribute("RunInWorkspace"))
 end
@@ -108,7 +108,7 @@ end
 function RefreshWorkspace()
 	for i, child in ipairs(workspace:GetChildren()) do
 		
-		--[[currently the enabled spaces for ULC are not either-or, so scripts should only run in these locations
+		--[[currently the enabled spaces for ULS are not either-or, so scripts should only run in these locations
 			if RunInCurrentCamera or RunInPlayerCharacters are true, even though they're technically in the workspace and RunInWorkspace may be true]]
 		if child == workspace.CurrentCamera then continue end
 		if game.Players:GetPlayerFromCharacter(child) then continue end

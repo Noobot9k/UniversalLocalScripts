@@ -113,7 +113,7 @@ But there's a problem: the movement of the coin looks kind of choppy and stutter
 
 Well, you'd probably need to put all the coins in one model and have a LocalScript in StarterPlayerScripts itterate over all of them. Doesn't lend a lot of flexibility to how you can sort your hierarchy. You also end up with a lot of scripts unrelated to the player in StarterPlayerScripts everytime you want to add something like this.
 
-With UniversalLocalScripts however, all we have to do is insert the ULC module into ReplicatedFirst, convert the above server script into a LocalScript, and add the following code to the top: (or use the plugin mentioned later to change the default contents of new LocalScripts)
+With UniversalLocalScripts however, all we have to do is insert the ULS module into ReplicatedFirst, convert the above server script into a LocalScript, and add the following code to the top: (or use the plugin mentioned later to change the default contents of new LocalScripts)
 
 ```lua
 local UniversalLocalScripts = require(game.ReplicatedFirst.UniversalLocalScripts)
@@ -134,6 +134,14 @@ If you'd like to see the place file for these examples, just download Example.rb
 ### Is pasting those 3 lines of code over and over a pain?
 
 Not with the Roblox Studio plugin that I made. [Check out Default LocalScript changer](https://github.com/Noobot9k/DefaultLocalScripts). It's intelligent enough to only put in the needed lines of code in places a LocalScript would need them to run (such as when you create a new LocalScript in the workspace or StarterCharacterScripts and leave them out when created elsewhere. An added feature of this plugin is that you can customize the default contents of LocalScripts to be whatever you want! Just in case you want a little more than just `Print("Hello World!")`.
+
+### Limitations and edge cases
+
+ULS does not support Parallel Luau. Placing a LocalScript to be run by ULS within an actor will output a warning. Attempting to call `Task.Desyncronize()` will output another warning. The script will still run, but it will run on the main Lua VM as if it is not in an actor and it will not be able to desync.
+
+Behavior of scripts moving from locations that will typically run LocalScripts without ULS such as StarterPlayerScripts to locations that will require ULS to run like the workspace, or vise versa is untested and may be unpredictable. Moving from locations that require ULS to run to locations LocalScripts won't run at all or vice versa should behave as expected however.
+
+Scripts in locations that without ULS would only run on one player's machine such as in their character, but that will run on every players' machine with the use of ULS will behave as expected and has been accounted for. ULS will only operate if the script would not run otherwise.
 
 ## Setup
 
