@@ -139,7 +139,7 @@ Not with the Roblox Studio plugin that I made. [Check out Default LocalScript ch
 
 1.a) If you're using Rojo, you can clone this repository. [Rojo](https://github.com/rojo-rbx/rojo) 7.4.1.
 
-1.b) If you're just working in Roblox Studio, you can insert [this package](https://create.roblox.com/store/asset/16890358871/UniversalLocalScripts-v20) into ReplicatedFirst, or download the latest version from the [releases page](https://github.com/Noobot9k/UniversalLocalScripts/releases/) and instert that into ReplicatedFirst.
+1.b) If you're just working in Roblox Studio, you can insert [this package](https://create.roblox.com/store/asset/17027242907/UniversalLocalScripts-v21) into ReplicatedFirst, or download the latest version from the [releases page](https://github.com/Noobot9k/UniversalLocalScripts/releases/) and instert that into ReplicatedFirst.
 
 2.) Select the ModuleScript in ReplicatedFirst called UniversalLocalScripts and configure its attributes to your liking.
 
