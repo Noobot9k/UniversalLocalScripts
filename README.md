@@ -1,3 +1,5 @@
+(this project is made obsolete by [RunContext](https://devforum.roblox.com/t/live-script-runcontext/1938784). It’s a tool I’ve been using for years but is no longer needed.)
+
 UniversalLocalScripts
 ========================
 
